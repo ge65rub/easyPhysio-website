@@ -41,12 +41,6 @@
             background-clip: text;
         }
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -66,34 +60,14 @@
             color: #00c896;
         }
 
-        .language-switcher {
+        .hero {
+            height: 100vh;
             display: flex;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.5rem;
-            border-radius: 25px;
-            border: 1px solid rgba(0, 200, 150, 0.2);
-        }
-
-        .lang-btn {
-            padding: 0.5rem 1rem;
-            background: transparent;
-            color: #b0b0b0;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .lang-btn:hover {
-            color: #00c896;
-        }
-
-        .lang-btn.active {
-            background: linear-gradient(135deg, #00c896, #00a878);
-            color: white;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a2e1a 100%);
         }
 
         .pulse-bg {
@@ -108,16 +82,6 @@
         @keyframes pulse {
             0%, 100% { transform: scale(1); opacity: 0.15; }
             50% { transform: scale(1.1); opacity: 0.25; }
-        }
-
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a2e1a 100%);
         }
 
         .hero-content {
@@ -540,7 +504,8 @@
             }
             
             .nav-links {
-                display: none;
+                gap: 1rem;
+                font-size: 0.9rem;
             }
 
             .tech-container {
@@ -550,134 +515,124 @@
             .section-title {
                 font-size: 2rem;
             }
-
-            .language-switcher {
-                margin-left: auto;
-            }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">easyPhysio</div>
-        <div class="nav-right">
-            <ul class="nav-links">
-                <li><a href="#home" data-i18n="nav.home">Home</a></li>
-                <li><a href="#problem" data-i18n="nav.problem">Problem</a></li>
-                <li><a href="#solution" data-i18n="nav.solution">Lösung</a></li>
-                <li><a href="#tech" data-i18n="nav.tech">Technologie</a></li>
-                <li><a href="#team" data-i18n="nav.team">Team</a></li>
-                <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
-            </ul>
-            <div class="language-switcher">
-                <button class="lang-btn active" data-lang="de">DE</button>
-                <button class="lang-btn" data-lang="en">EN</button>
-            </div>
-        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#solution">Lösung</a></li>
+            <li><a href="#tech">Technologie</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
     </nav>
 
     <section class="hero" id="home">
         <div class="pulse-bg"></div>
         <div class="hero-content">
             <h1>easyPhysio</h1>
-            <p class="subtitle" data-i18n="hero.subtitle">Intelligente Physiotherapie für zuhause</p>
-            <p data-i18n="hero.description">KI-gestützte Bewegungserkennung für eine bessere Rehabilitation. Messbar. Motivierend. Mobil.</p>
+            <p class="subtitle">Intelligente Physiotherapie für zuhause</p>
+            <p>KI-gestützte Bewegungserkennung für eine bessere Rehabilitation. Messbar. Motivierend. Mobil.</p>
             <div>
-                <a href="#solution" class="cta-button" data-i18n="hero.cta1">Mehr erfahren</a>
-                <a href="#contact" class="cta-button secondary" data-i18n="hero.cta2">Kontakt aufnehmen</a>
+                <a href="#solution" class="cta-button">Mehr erfahren</a>
+                <a href="#contact" class="cta-button secondary">Kontakt aufnehmen</a>
             </div>
         </div>
     </section>
 
     <section class="section problem-section" id="problem">
-        <h2 class="section-title" data-i18n="problem.title">Die Herausforderung</h2>
-        <p class="section-subtitle" data-i18n="problem.subtitle">Physiotherapie zuhause bringt viele Schwierigkeiten mit sich, die den Heilungsprozess verzögern können.</p>
+        <h2 class="section-title">Die Herausforderung</h2>
+        <p class="section-subtitle">Physiotherapie zuhause bringt viele Schwierigkeiten mit sich, die den Heilungsprozess verzögern können.</p>
         <div class="problem-grid">
             <div class="problem-card">
                 <div class="problem-icon">📅</div>
-                <h3 data-i18n="problem.card1.title">Unregelmäßiges Training</h3>
-                <p data-i18n="problem.card1.text">Im Alltags- und Unistress werden Übungen oft vergessen oder vernachlässigt, was den Heilungsprozess verlangsamt.</p>
+                <h3>Unregelmäßiges Training</h3>
+                <p>Im Alltags- und Unistress werden Übungen oft vergessen oder vernachlässigt, was den Heilungsprozess verlangsamt.</p>
             </div>
             <div class="problem-card">
                 <div class="problem-icon">📊</div>
-                <h3 data-i18n="problem.card2.title">Keine Fortschrittsmessung</h3>
-                <p data-i18n="problem.card2.text">Ohne objektive Messungen ist es schwierig zu sagen: Ist die Beweglichkeit besser als letzte Woche? Nimmt der Fortschritt ab?</p>
+                <h3>Keine Fortschrittsmessung</h3>
+                <p>Ohne objektive Messungen ist es schwierig zu sagen: Ist die Beweglichkeit besser als letzte Woche? Nimmt der Fortschritt ab?</p>
             </div>
             <div class="problem-card">
                 <div class="problem-icon">❓</div>
-                <h3 data-i18n="problem.card3.title">Unsicherheit bei der Ausführung</h3>
-                <p data-i18n="problem.card3.text">Patienten sind unsicher, ob sie die Übungen korrekt durchführen und wann die Therapie abgeschlossen ist.</p>
+                <h3>Unsicherheit bei der Ausführung</h3>
+                <p>Patienten sind unsicher, ob sie die Übungen korrekt durchführen und wann die Therapie abgeschlossen ist.</p>
             </div>
         </div>
     </section>
 
     <section class="section solution-section" id="solution">
-        <h2 class="section-title" data-i18n="solution.title">Unsere Lösung</h2>
-        <p class="section-subtitle" data-i18n="solution.subtitle">easyPhysio kombiniert präzise Sensortechnologie mit künstlicher Intelligenz für eine optimale Rehabilitation.</p>
+        <h2 class="section-title">Unsere Lösung</h2>
+        <p class="section-subtitle">easyPhysio kombiniert präzise Sensortechnologie mit künstlicher Intelligenz für eine optimale Rehabilitation.</p>
         <div class="features">
             <div class="feature-card">
                 <div class="feature-icon">📱</div>
-                <h3 data-i18n="solution.card1.title">Intuitive App</h3>
-                <p data-i18n="solution.card1.text">Individuelle Übungsprogramme, maßgeschneidert auf Ihre persönlichen Bedürfnisse – ob Rehabilitation, Physiotherapie oder Beweglichkeitsförderung.</p>
+                <h3>Intuitive App</h3>
+                <p>Individuelle Übungsprogramme, maßgeschneidert auf Ihre persönlichen Bedürfnisse – ob Rehabilitation, Physiotherapie oder Beweglichkeitsförderung.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🤖</div>
-                <h3 data-i18n="solution.card2.title">KI-gestütztes Feedback</h3>
-                <p data-i18n="solution.card2.text">Echtzeit-Analyse Ihrer Bewegungen mit sofortiger Rückmeldung zur korrekten Ausführung. Verhindert Verletzungen und optimiert Ihre Technik.</p>
+                <h3>KI-gestütztes Feedback</h3>
+                <p>Echtzeit-Analyse Ihrer Bewegungen mit sofortiger Rückmeldung zur korrekten Ausführung. Verhindert Verletzungen und optimiert Ihre Technik.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📈</div>
-                <h3 data-i18n="solution.card3.title">Fortschritts-Tracking</h3>
-                <p data-i18n="solution.card3.text">Visualisieren Sie Ihre Fortschritte mit detaillierten Analysen. Messbare Verbesserungen motivieren und zeigen den Erfolg Ihrer Therapie.</p>
+                <h3>Fortschritts-Tracking</h3>
+                <p>Visualisieren Sie Ihre Fortschritte mit detaillierten Analysen. Messbare Verbesserungen motivieren und zeigen den Erfolg Ihrer Therapie.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🎯</div>
-                <h3 data-i18n="solution.card4.title">Präzise Sensoren</h3>
-                <p data-i18n="solution.card4.text">Hochpräzise Bewegungssensoren erfassen jede Nuance Ihrer Bewegungen für eine genaue Analyse und personalisiertes Feedback.</p>
+                <h3>Präzise Sensoren</h3>
+                <p>Hochpräzise Bewegungssensoren erfassen jede Nuance Ihrer Bewegungen für eine genaue Analyse und personalisiertes Feedback.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🏠</div>
-                <h3 data-i18n="solution.card5.title">Flexibel & Mobil</h3>
-                <p data-i18n="solution.card5.text">Trainieren Sie wann und wo Sie wollen. Keine Anfahrtswege, keine Terminbindung – Ihre Therapie passt sich Ihrem Leben an.</p>
+                <h3>Flexibel & Mobil</h3>
+                <p>Trainieren Sie wann und wo Sie wollen. Keine Anfahrtswege, keine Terminbindung – Ihre Therapie passt sich Ihrem Leben an.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">👨‍⚕️</div>
-                <h3 data-i18n="solution.card6.title">Physiotherapeuten-geprüft</h3>
-                <p data-i18n="solution.card6.text">Entwickelt in enger Zusammenarbeit mit Physiotherapeuten für praxisnahe und medizinisch fundierte Lösungen.</p>
+                <h3>Physiotherapeuten-geprüft</h3>
+                <p>Entwickelt in enger Zusammenarbeit mit Physiotherapeuten für praxisnahe und medizinisch fundierte Lösungen.</p>
             </div>
         </div>
     </section>
 
     <section class="section tech-section" id="tech">
-        <h2 class="section-title" data-i18n="tech.title">Technologie im Detail</h2>
-        <p class="section-subtitle" data-i18n="tech.subtitle">Hardware und KI arbeiten Hand in Hand für präzise Bewegungsanalyse</p>
+        <h2 class="section-title">Technologie im Detail</h2>
+        <p class="section-subtitle">Hardware und KI arbeiten Hand in Hand für präzise Bewegungsanalyse</p>
         
         <div class="tech-container">
             <div class="tech-image">
                 <div class="tech-image-placeholder">🔧</div>
             </div>
             <div class="tech-details">
-                <h3 data-i18n="tech.hardware.title">Hardware-Komponenten</h3>
+                <h3>Hardware-Komponenten</h3>
                 <ul>
-                    <li data-i18n="tech.hardware.item1">ESP32-WROOM-32 Mikrocontroller für zentrale Steuerung</li>
-                    <li data-i18n="tech.hardware.item2">Hochpräzise Gyroskop- und Beschleunigungssensoren</li>
-                    <li data-i18n="tech.hardware.item3">Bluetooth-Konnektivität für drahtlose Datenübertragung</li>
-                    <li data-i18n="tech.hardware.item4">Energieeffizientes Power Management</li>
-                    <li data-i18n="tech.hardware.item5">USB-UART-Schnittstelle für Programmierung und Kalibrierung</li>
+                    <li>ESP32-WROOM-32 Mikrocontroller für zentrale Steuerung</li>
+                    <li>Hochpräzise Gyroskop- und Beschleunigungssensoren</li>
+                    <li>Bluetooth-Konnektivität für drahtlose Datenübertragung</li>
+                    <li>Energieeffizientes Power Management</li>
+                    <li>USB-UART-Schnittstelle für Programmierung und Kalibrierung</li>
                 </ul>
             </div>
         </div>
 
         <div class="tech-container" style="margin-top: 4rem;">
             <div class="tech-details">
-                <h3 data-i18n="tech.ai.title">KI-gestützte Bewegungserkennung</h3>
+                <h3>KI-gestützte Bewegungserkennung</h3>
                 <ul>
-                    <li data-i18n="tech.ai.item1">Sensorfusion mit Kalman-Filter für exakte Orientierung</li>
-                    <li data-i18n="tech.ai.item2">Feature-Extraktion: Range of Motion, Geschwindigkeit, Beschleunigung</li>
-                    <li data-i18n="tech.ai.item3">Machine Learning zur Klassifikation von Bewegungsmustern</li>
-                    <li data-i18n="tech.ai.item4">Training mit echten Physiotherapie-Daten</li>
-                    <li data-i18n="tech.ai.item5">Erkennung typischer Fehler in Echtzeit</li>
-                    <li data-i18n="tech.ai.item6">Score-Bewertung und visuelles Feedback in der App</li>
+                    <li>Sensorfusion mit Kalman-Filter für exakte Orientierung</li>
+                    <li>Feature-Extraktion: Range of Motion, Geschwindigkeit, Beschleunigung</li>
+                    <li>Machine Learning zur Klassifikation von Bewegungsmustern</li>
+                    <li>Training mit echten Physiotherapie-Daten</li>
+                    <li>Erkennung typischer Fehler in Echtzeit</li>
+                    <li>Score-Bewertung und visuelles Feedback in der App</li>
                 </ul>
             </div>
             <div class="tech-image">
@@ -687,47 +642,47 @@
     </section>
 
     <section class="section target-section" id="targets">
-        <h2 class="section-title" data-i18n="targets.title">Für wen ist easyPhysio?</h2>
-        <p class="section-subtitle" data-i18n="targets.subtitle">Unsere Lösung unterstützt verschiedene Zielgruppen bei ihrer Beweglichkeit</p>
+        <h2 class="section-title">Für wen ist easyPhysio?</h2>
+        <p class="section-subtitle">Unsere Lösung unterstützt verschiedene Zielgruppen bei ihrer Beweglichkeit</p>
         <div class="target-grid">
             <div class="target-card">
                 <div class="target-icon">🏃</div>
-                <h3 data-i18n="targets.card1.title">Sportler</h3>
-                <p data-i18n="targets.card1.text">Regelmäßige Überwachung der Beweglichkeit zur Verletzungsprävention und Leistungssteigerung.</p>
+                <h3>Sportler</h3>
+                <p>Regelmäßige Überwachung der Beweglichkeit zur Verletzungsprävention und Leistungssteigerung.</p>
             </div>
             <div class="target-card">
                 <div class="target-icon">🏥</div>
-                <h3 data-i18n="targets.card2.title">Physiotherapie-Patienten</h3>
-                <p data-i18n="targets.card2.text">Personen in der Rehabilitation, die ihre Fortschritte nachvollziehen und optimieren möchten.</p>
+                <h3>Physiotherapie-Patienten</h3>
+                <p>Personen in der Rehabilitation, die ihre Fortschritte nachvollziehen und optimieren möchten.</p>
             </div>
             <div class="target-card">
                 <div class="target-icon">👴</div>
-                <h3 data-i18n="targets.card3.title">Senioren</h3>
-                <p data-i18n="targets.card3.text">Erhaltung und Verbesserung der Beweglichkeit zur Bewahrung der Selbstständigkeit und Sturzprävention.</p>
+                <h3>Senioren</h3>
+                <p>Erhaltung und Verbesserung der Beweglichkeit zur Bewahrung der Selbstständigkeit und Sturzprävention.</p>
             </div>
         </div>
     </section>
 
     <section class="section team-section" id="team">
-        <h2 class="section-title" data-i18n="team.title">Unser Team</h2>
-        <p class="section-subtitle" data-i18n="team.subtitle">Expertise aus verschiedenen Bereichen für eine ganzheitliche Lösung</p>
+        <h2 class="section-title">Unser Team</h2>
+        <p class="section-subtitle">Expertise aus verschiedenen Bereichen für eine ganzheitliche Lösung</p>
         <div class="team-grid">
             <div class="team-card">
                 <div class="team-avatar">👨‍💻</div>
                 <h3>Luis Albert</h3>
-                <div class="team-role" data-i18n="team.card1.role">App-Entwicklung</div>
+                <div class="team-role">App-Entwicklung</div>
                 <div class="team-email">luis.albert@tum.de</div>
             </div>
             <div class="team-card">
                 <div class="team-avatar">⚡</div>
                 <h3>Shuo Tang</h3>
-                <div class="team-role" data-i18n="team.card2.role">Hardware-Entwicklung</div>
+                <div class="team-role">Hardware-Entwicklung</div>
                 <div class="team-email">shuo.tang@tum.de</div>
             </div>
             <div class="team-card">
                 <div class="team-avatar">🤖</div>
                 <h3>Mouheb Benchakir</h3>
-                <div class="team-role" data-i18n="team.card3.role">PR & KI-Integration</div>
+                <div class="team-role">PR & KI-Integration</div>
                 <div class="team-email">mouheb.benchakir@tum.de</div>
             </div>
         </div>
@@ -735,4 +690,71 @@
 
     <section class="contact-section" id="contact">
         <div class="contact-content">
-            <h2 class="section
+            <h2 class="section-title">Werden Sie Teil der Zukunft</h2>
+            <p class="section-subtitle">Interessiert an einer Zusammenarbeit oder möchten Sie mehr erfahren?</p>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-card-icon">🏥</div>
+                    <h3>Physiotherapie-Praxen</h3>
+                    <p>Testen Sie easyPhysio mit Ihren Patienten und entlasten Sie Ihre Terminplanung</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-card-icon">🏢</div>
+                    <h3>Krankenkassen</h3>
+                    <p>Kooperationen für vergünstigte Angebote und bessere Patientenversorgung</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-card-icon">💊</div>
+                    <h3>Apotheken</h3>
+                    <p>Erweitern Sie Ihr Gesundheitsangebot mit innovativer Technologie</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <a href="mailto:luis.albert@tum.de" class="cta-button">Kontaktieren Sie uns</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 easyPhysio. Ein Cosima 2025 Projekt.</p>
+        <div class="footer-thanks">
+            <p>Mit besonderem Dank an unsere Sponsoren, Betreuer Yushen Zhang und das gesamte Cosima Team.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .problem-card, .target-card, .team-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
