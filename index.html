@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>easyPhysio - Intelligente Physiotherapie für zuhause</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 200, 150, 0.2);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00c896, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(0, 200, 150, 0.1);
+            color: #00c896;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a2e1a 100%);
+        }
+
+        .pulse-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 200, 150, 0.3) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.1); opacity: 0.25; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00c896, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: #b0b0b0;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #909090;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, #00c896, #00a878);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            box-shadow: 0 10px 30px rgba(0, 200, 150, 0.3);
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 200, 150, 0.5);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid #00c896;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            padding: 5rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00c896, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #909090;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .problem-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 200, 150, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 200, 150, 0.5);
+            box-shadow: 0 15px 30px rgba(0, 200, 150, 0.2);
+        }
+
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00c896;
+        }
+
+        .problem-card p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        .solution-section {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a2e1a 100%);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 200, 150, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 200, 150, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 200, 150, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 200, 150, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #00c896;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .feature-card p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        .tech-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .tech-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+            align-items: center;
+        }
+
+        .tech-image {
+            background: rgba(0, 200, 150, 0.05);
+            border: 2px solid rgba(0, 200, 150, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+        }
+
+        .tech-image-placeholder {
+            font-size: 8rem;
+            color: rgba(0, 200, 150, 0.3);
+        }
+
+        .tech-details h3 {
+            font-size: 1.8rem;
+            color: #00c896;
+            margin-bottom: 1rem;
+        }
+
+        .tech-details ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .tech-details li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b0b0b0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .tech-details li:before {
+            content: '✓';
+            color: #00c896;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .target-section {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a2e1a 100%);
+        }
+
+        .target-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .target-card {
+            background: rgba(0, 200, 150, 0.05);
+            border: 2px solid rgba(0, 200, 150, 0.2);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .target-card:hover {
+            transform: scale(1.05);
+            border-color: #00c896;
+            box-shadow: 0 15px 40px rgba(0, 200, 150, 0.3);
+        }
+
+        .target-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .target-card h3 {
+            font-size: 1.8rem;
+            color: #00c896;
+            margin-bottom: 1rem;
+        }
+
+        .target-card p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        .team-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 200, 150, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            border-color: #00c896;
+            box-shadow: 0 15px 30px rgba(0, 200, 150, 0.2);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00c896, #00ff88);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .team-card h3 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: #00c896;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-email {
+            color: #909090;
+            font-size: 0.9rem;
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a2e1a 100%);
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(0, 200, 150, 0.05);
+            border: 1px solid rgba(0, 200, 150, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: #00c896;
+        }
+
+        .contact-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #00c896;
+        }
+
+        .contact-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .contact-card p {
+            color: #b0b0b0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #0a0a0a;
+            border-top: 1px solid rgba(0, 200, 150, 0.2);
+            color: #b0b0b0;
+        }
+
+        .footer-thanks {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #707070;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .tech-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">easyPhysio</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#solution">Lösung</a></li>
+            <li><a href="#tech">Technologie</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="pulse-bg"></div>
+        <div class="hero-content">
+            <h1>easyPhysio</h1>
+            <p class="subtitle">Intelligente Physiotherapie für zuhause</p>
+            <p>KI-gestützte Bewegungserkennung für eine bessere Rehabilitation. Messbar. Motivierend. Mobil.</p>
+            <div>
+                <a href="#solution" class="cta-button">Mehr erfahren</a>
+                <a href="#contact" class="cta-button secondary">Kontakt aufnehmen</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section problem-section" id="problem">
+        <h2 class="section-title">Die Herausforderung</h2>
+        <p class="section-subtitle">Physiotherapie zuhause bringt viele Schwierigkeiten mit sich, die den Heilungsprozess verzögern können.</p>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <div class="problem-icon">📅</div>
+                <h3>Unregelmäßiges Training</h3>
+                <p>Im Alltags- und Unistress werden Übungen oft vergessen oder vernachlässigt, was den Heilungsprozess verlangsamt.</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">📊</div>
+                <h3>Keine Fortschrittsmessung</h3>
+                <p>Ohne objektive Messungen ist es schwierig zu sagen: Ist die Beweglichkeit besser als letzte Woche? Nimmt der Fortschritt ab?</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">❓</div>
+                <h3>Unsicherheit bei der Ausführung</h3>
+                <p>Patienten sind unsicher, ob sie die Übungen korrekt durchführen und wann die Therapie abgeschlossen ist.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section solution-section" id="solution">
+        <h2 class="section-title">Unsere Lösung</h2>
+        <p class="section-subtitle">easyPhysio kombiniert präzise Sensortechnologie mit künstlicher Intelligenz für eine optimale Rehabilitation.</p>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Intuitive App</h3>
+                <p>Individuelle Übungsprogramme, maßgeschneidert auf Ihre persönlichen Bedürfnisse – ob Rehabilitation, Physiotherapie oder Beweglichkeitsförderung.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>KI-gestütztes Feedback</h3>
+                <p>Echtzeit-Analyse Ihrer Bewegungen mit sofortiger Rückmeldung zur korrekten Ausführung. Verhindert Verletzungen und optimiert Ihre Technik.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Fortschritts-Tracking</h3>
+                <p>Visualisieren Sie Ihre Fortschritte mit detaillierten Analysen. Messbare Verbesserungen motivieren und zeigen den Erfolg Ihrer Therapie.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Präzise Sensoren</h3>
+                <p>Hochpräzise Bewegungssensoren erfassen jede Nuance Ihrer Bewegungen für eine genaue Analyse und personalisiertes Feedback.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏠</div>
+                <h3>Flexibel & Mobil</h3>
+                <p>Trainieren Sie wann und wo Sie wollen. Keine Anfahrtswege, keine Terminbindung – Ihre Therapie passt sich Ihrem Leben an.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👨‍⚕️</div>
+                <h3>Physiotherapeuten-geprüft</h3>
+                <p>Entwickelt in enger Zusammenarbeit mit Physiotherapeuten für praxisnahe und medizinisch fundierte Lösungen.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section tech-section" id="tech">
+        <h2 class="section-title">Technologie im Detail</h2>
+        <p class="section-subtitle">Hardware und KI arbeiten Hand in Hand für präzise Bewegungsanalyse</p>
+        
+        <div class="tech-container">
+            <div class="tech-image">
+                <div class="tech-image-placeholder">🔧</div>
+            </div>
+            <div class="tech-details">
+                <h3>Hardware-Komponenten</h3>
+                <ul>
+                    <li>ESP32-WROOM-32 Mikrocontroller für zentrale Steuerung</li>
+                    <li>Hochpräzise Gyroskop- und Beschleunigungssensoren</li>
+                    <li>Bluetooth-Konnektivität für drahtlose Datenübertragung</li>
+                    <li>Energieeffizientes Power Management</li>
+                    <li>USB-UART-Schnittstelle für Programmierung und Kalibrierung</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tech-container" style="margin-top: 4rem;">
+            <div class="tech-details">
+                <h3>KI-gestützte Bewegungserkennung</h3>
+                <ul>
+                    <li>Sensorfusion mit Kalman-Filter für exakte Orientierung</li>
+                    <li>Feature-Extraktion: Range of Motion, Geschwindigkeit, Beschleunigung</li>
+                    <li>Machine Learning zur Klassifikation von Bewegungsmustern</li>
+                    <li>Training mit echten Physiotherapie-Daten</li>
+                    <li>Erkennung typischer Fehler in Echtzeit</li>
+                    <li>Score-Bewertung und visuelles Feedback in der App</li>
+                </ul>
+            </div>
+            <div class="tech-image">
+                <div class="tech-image-placeholder">🧠</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section target-section" id="targets">
+        <h2 class="section-title">Für wen ist easyPhysio?</h2>
+        <p class="section-subtitle">Unsere Lösung unterstützt verschiedene Zielgruppen bei ihrer Beweglichkeit</p>
+        <div class="target-grid">
+            <div class="target-card">
+                <div class="target-icon">🏃</div>
+                <h3>Sportler</h3>
+                <p>Regelmäßige Überwachung der Beweglichkeit zur Verletzungsprävention und Leistungssteigerung.</p>
+            </div>
+            <div class="target-card">
+                <div class="target-icon">🏥</div>
+                <h3>Physiotherapie-Patienten</h3>
+                <p>Personen in der Rehabilitation, die ihre Fortschritte nachvollziehen und optimieren möchten.</p>
+            </div>
+            <div class="target-card">
+                <div class="target-icon">👴</div>
+                <h3>Senioren</h3>
+                <p>Erhaltung und Verbesserung der Beweglichkeit zur Bewahrung der Selbstständigkeit und Sturzprävention.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section team-section" id="team">
+        <h2 class="section-title">Unser Team</h2>
+        <p class="section-subtitle">Expertise aus verschiedenen Bereichen für eine ganzheitliche Lösung</p>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar">👨‍💻</div>
+                <h3>Luis Albert</h3>
+                <div class="team-role">App-Entwicklung</div>
+                <div class="team-email">luis.albert@tum.de</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">⚡</div>
+                <h3>Shuo Tang</h3>
+                <div class="team-role">Hardware-Entwicklung</div>
+                <div class="team-email">shuo.tang@tum.de</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">🤖</div>
+                <h3>Mouheb Benchakir</h3>
+                <div class="team-role">PR & KI-Integration</div>
+                <div class="team-email">mouheb.benchakir@tum.de</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="contact-content">
+            <h2 class="section-title">Werden Sie Teil der Zukunft</h2>
+            <p class="section-subtitle">Interessiert an einer Zusammenarbeit oder möchten Sie mehr erfahren?</p>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-card-icon">🏥</div>
+                    <h3>Physiotherapie-Praxen</h3>
+                    <p>Testen Sie easyPhysio mit Ihren Patienten und entlasten Sie Ihre Terminplanung</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-card-icon">🏢</div>
+                    <h3>Krankenkassen</h3>
+                    <p>Kooperationen für vergünstigte Angebote und bessere Patientenversorgung</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-card-icon">💊</div>
+                    <h3>Apotheken</h3>
+                    <p>Erweitern Sie Ihr Gesundheitsangebot mit innovativer Technologie</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <a href="mailto:luis.albert@tum.de" class="cta-button">Kontaktieren Sie uns</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 easyPhysio. Ein Cosima 2025 Projekt.</p>
+        <div class="footer-thanks">
+            <p>Mit besonderem Dank an unsere Sponsoren, Betreuer Yushen Zhang und das gesamte Cosima Team.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .problem-card, .target-card, .team-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
